@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'data_user' => [
+            'driver' => 'session',
+            'provider' => 'data_users',
+        ],
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -63,6 +68,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+        'data_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\DataUser::class,
         ],
 
         // 'users' => [

@@ -442,7 +442,7 @@
                                 </a>
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item">
-                                <a href="html/index.html" class="nk-menu-link">
+                                <a href="{{ route('supplier.tampil') }}" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-truck"></em></span>
                                     <span class="nk-menu-text">Data Supplier</span>
                                 </a>

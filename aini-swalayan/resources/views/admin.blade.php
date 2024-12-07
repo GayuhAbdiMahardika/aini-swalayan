@@ -55,18 +55,18 @@
                     <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
                         <a href="#" data-toggle="dropdown" data-offset="50,-60">
                             <div class="user-avatar">
-                                <span>AB</span>
+                                <span>{{ substr(Auth::user()->name, 0, 2) }}</span>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-md ml-4">
                             <div class="dropdown-inner user-card-wrap d-none d-md-block">
                                 <div class="user-card">
                                     <div class="user-avatar">
-                                        <span>AB</span>
+                                        <span>{{ substr(Auth::user()->name, 0, 2) }}</span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                        <span class="sub-text text-soft">info@softnio.com</span>
+                                        <span class="lead-text">{{ Auth::user()->name }}</span>
+                                        <span class="sub-text text-soft">{{ Auth::user()->email }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    <li><a href="{{ route('logout') }}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
-                                    <li class="dropdown chats-dropdown hide-mb-xs">
+                                    {{-- <li class="dropdown chats-dropdown hide-mb-xs">
                                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
                                             <div class="icon-status icon-status-na"><em class="icon ni ni-comments"></em></div>
                                         </a>
@@ -255,8 +255,8 @@
                                                 <a href="html/chats.html">View All</a>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="dropdown notification-dropdown">
+                                    </li> --}}
+                                    {{-- <li class="dropdown notification-dropdown">
                                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
                                             <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
                                         </a>
@@ -309,7 +309,7 @@
                                                 <a href="#">View All</a>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                     <li class="dropdown list-apps-dropdown d-lg-none">
                                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
                                             <div class="icon-status icon-status-na"><em class="icon ni ni-menu-circled"></em></div>
@@ -395,11 +395,11 @@
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar">
-                                                        <span>AB</span>
+                                                        <span>{{ substr(Auth::user()->name, 0, 2) }}</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                        <span class="sub-text">info@softnio.com</span>
+                                                        <span class="lead-text">{{ Auth::user()->name }}</span>
+                                                        <span class="sub-text">{{ Auth::user()->email }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -413,7 +413,7 @@
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                    <li><a href="{{ route('logout') }}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -452,7 +452,7 @@
                                 </a>
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item">
-                                <a href="html/index.html" class="nk-menu-link">
+                                <a href="{{ route('beli') }}" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-bag"></em></span>
                                     <span class="nk-menu-text">Pembelian</span>
                                 </a>

@@ -7,7 +7,7 @@ use App\Http\Controllers\PembelianController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => ['auth:data_user']], function () {
@@ -25,5 +25,5 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::get('/pembelian', [PembelianController::class, 'create'])->name('beli');
     Route::post('/savepembelian', [PembelianController::class, 'beli'])->name('savebeli');
 
-    });
+});
 

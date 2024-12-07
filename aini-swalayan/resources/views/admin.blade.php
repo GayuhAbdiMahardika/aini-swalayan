@@ -436,7 +436,7 @@
                                 <h6 class="overline-title text-primary-alt">Inventory</h6>
                             </li><!-- .nk-menu-heading -->
                             <li class="nk-menu-item">
-                                <a href="html/index.html" class="nk-menu-link">
+                                <a href="{{ route('barang.index') }}" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-property-blank"></em></span>
                                     <span class="nk-menu-text">Data Barang</span>
                                 </a>

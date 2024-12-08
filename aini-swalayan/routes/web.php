@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\LaporanPembelianController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\LaporanPenjualanController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -31,7 +33,16 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::get('/barang', [PembelianController::class, 'pilihproduk'])->name('produk');
     Route::post('/savepembelian', [PembelianController::class, 'beli'])->name('savebeli');
 
+    Route::get('/penjualan', [PenjualanController::class, 'create'])->name('jual');
+    Route::post('/add-to-session-penjualan', [PenjualanController::class, 'addToSessionPenjualan'])->name('add.to.session.penjualan');
+    Route::post('/remove-from-session-penjualan', [PenjualanController::class, 'removeFromSession'])->name('remove.from.session.penjualan');
+    Route::post('/editsession-penjualan', [PenjualanController::class, 'editSession'])->name('ubahcart.penjualan');
+    Route::get('/reset-penjualan', [PenjualanController::class, 'reset'])->name('reset.penjualan');
+    Route::get('/barang-penjualan', [PenjualanController::class, 'pilihproduk'])->name('produk.penjualan');
+    Route::post('/savepenjualan', [PenjualanController::class, 'jual'])->name('savejual');
+
     Route::get('/laporan-pembelian', [LaporanPembelianController::class, 'index'])->name('laporan.pembelian');
+    Route::get('/laporan-penjualan', [LaporanPenjualanController::class, 'index'])->name('laporan.penjualan');
 
 });
 

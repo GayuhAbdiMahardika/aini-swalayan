@@ -467,13 +467,13 @@
                                 <h6 class="overline-title text-primary-alt">Penjualan</h6>
                             </li><!-- .nk-menu-heading -->
                             <li class="nk-menu-item">
-                                <a href="html/index.html" class="nk-menu-link">
+                                <a href="{{ route('jual') }}" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
                                     <span class="nk-menu-text">Penjualan</span>
                                 </a>
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item">
-                                <a href="html/index.html" class="nk-menu-link">
+                                <a href="{{ route('laporan.penjualan') }}" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
                                     <span class="nk-menu-text">Laporan Penjualan</span>
                                 </a>

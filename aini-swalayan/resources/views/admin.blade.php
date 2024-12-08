@@ -502,6 +502,7 @@
     <script src="{{ asset('assets/js/scripts.js?ver=2.4.0') }}"></script>
     <script src="{{ asset('assets/js/charts/gd-analytics.js?ver=2.4.0') }}"></script>
     <script src="{{ asset('assets/js/libs/jqvmap.js?ver=2.4.0') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

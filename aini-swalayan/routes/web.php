@@ -23,6 +23,11 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::post('/supplier/delete/{id}', [SupplierController::class, 'delete'])->name('supplier.delete');
 
     Route::get('/pembelian', [PembelianController::class, 'create'])->name('beli');
+    Route::post('/add-to-session', [PembelianController::class, 'addToSession'])->name('add.to.session');
+    Route::post('/remove-from-session', [PembelianController::class, 'removeFromSession'])->name('remove.from.session');
+    Route::post('/editsession', [PembelianController::class, 'editSession'])->name('ubahcart');
+    Route::get('/reset', [PembelianController::class, 'reset'])->name('reset');
+    Route::get('/barang', [PembelianController::class, 'pilihproduk'])->name('produk');
     Route::post('/savepembelian', [PembelianController::class, 'beli'])->name('savebeli');
 
 });

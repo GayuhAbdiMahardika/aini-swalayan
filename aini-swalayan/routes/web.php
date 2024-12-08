@@ -4,15 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\LaporanPembelianController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\LaporanPenjualanController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => ['auth:data_user']], function () {
     Route::get('/', function () {
-        return view('admin');
+        return view('dashboard');
     });
 
     Route::get('/supplier', [SupplierController::class, 'tampil'])->name('supplier.tampil');
@@ -30,7 +34,25 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit'); // Form edit barang
     Route::put('/barang/{id}', [BarangController::class, 'update'])->name('barang.update'); // Memperbarui barang
     Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy'); // Menghapus barang
+    
+    Route::get('/pembelian', [PembelianController::class, 'create'])->name('beli');
+    Route::post('/add-to-session', [PembelianController::class, 'addToSession'])->name('add.to.session');
+    Route::post('/remove-from-session', [PembelianController::class, 'removeFromSession'])->name('remove.from.session');
+    Route::post('/editsession', [PembelianController::class, 'editSession'])->name('ubahcart');
+    Route::get('/reset', [PembelianController::class, 'reset'])->name('reset');
+    Route::get('/barang', [PembelianController::class, 'pilihproduk'])->name('produk');
+    Route::post('/savepembelian', [PembelianController::class, 'beli'])->name('savebeli');
 
+    Route::get('/penjualan', [PenjualanController::class, 'create'])->name('jual');
+    Route::post('/add-to-session-penjualan', [PenjualanController::class, 'addToSessionPenjualan'])->name('add.to.session.penjualan');
+    Route::post('/remove-from-session-penjualan', [PenjualanController::class, 'removeFromSession'])->name('remove.from.session.penjualan');
+    Route::post('/editsession-penjualan', [PenjualanController::class, 'editSession'])->name('ubahcart.penjualan');
+    Route::get('/reset-penjualan', [PenjualanController::class, 'reset'])->name('reset.penjualan');
+    Route::get('/barang-penjualan', [PenjualanController::class, 'pilihproduk'])->name('produk.penjualan');
+    Route::post('/savepenjualan', [PenjualanController::class, 'jual'])->name('savejual');
 
-    });
+    Route::get('/laporan-pembelian', [LaporanPembelianController::class, 'index'])->name('laporan.pembelian');
+    Route::get('/laporan-penjualan', [LaporanPenjualanController::class, 'index'])->name('laporan.penjualan');
+
+});
 

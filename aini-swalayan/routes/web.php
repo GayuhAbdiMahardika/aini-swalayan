@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\LaporanPembelianController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -29,6 +30,8 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::get('/reset', [PembelianController::class, 'reset'])->name('reset');
     Route::get('/barang', [PembelianController::class, 'pilihproduk'])->name('produk');
     Route::post('/savepembelian', [PembelianController::class, 'beli'])->name('savebeli');
+
+    Route::get('/laporan-pembelian', [LaporanPembelianController::class, 'index'])->name('laporan.pembelian');
 
 });
 

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Tambah Barang</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
+@extends('admin')
+
+@section('content')
     <div class="container mt-5">
         <h4 class="text-primary">Tambah Barang</h4>
         <div class="card">
@@ -29,5 +25,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+@endsection

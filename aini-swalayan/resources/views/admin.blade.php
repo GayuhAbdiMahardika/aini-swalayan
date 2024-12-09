@@ -70,13 +70,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="dropdown-inner">
+                            {{-- <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
                                     <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
                                     <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li><a href="{{ route('logout') }}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
@@ -405,9 +405,9 @@
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                    {{-- <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
                                                     <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
-                                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li> --}}
                                                     <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
                                                 </ul>
                                             </div>
@@ -431,7 +431,7 @@
                                 <h6 class="overline-title text-primary-alt">Dashboards</h6>
                             </li><!-- .nk-menu-heading -->
                             <li class="nk-menu-item">
-                                <a href="html/index.html" class="nk-menu-link">
+                                <a href="/" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
                                     <span class="nk-menu-text">Default Dashboard</span>
                                 </a>
@@ -502,6 +502,20 @@
     <script src="{{ asset('assets/js/scripts.js?ver=2.4.0') }}"></script>
     <script src="{{ asset('assets/js/charts/gd-analytics.js?ver=2.4.0') }}"></script>
     <script src="{{ asset('assets/js/libs/jqvmap.js?ver=2.4.0') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const darkSwitch = document.querySelector('.dark-switch');
+            const body = document.body;
+
+            // Apply dark mode if it was previously enabled
+            if (localStorage.getItem('dark-mode') === 'enabled') {
+                body.classList.add('dark-mode');
+                console.log('dark mode enabled');
+            } else {
+                console.log('dark mode disabled');
+            }
+        });
+    </script>
     @stack('scripts')
 </body>
 

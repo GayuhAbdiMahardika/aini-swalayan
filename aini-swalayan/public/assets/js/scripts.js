@@ -127,7 +127,7 @@
 
   NioApp.PassSwitch = function () {
     NioApp.Passcode('.passcode-switch');
-  }; // Toastr Message @v1.0 
+  }; // Toastr Message @v1.0
 
 
   NioApp.Toast = function (msg, ttype, opt) {
@@ -565,21 +565,29 @@
   }; // Dark Mode Switch @since v2.0
 
 
-  NioApp.ModeSwitch = function () {
+NioApp.ModeSwitch = function () {
     var toggle = $('.dark-switch');
 
-    if ($body.hasClass('dark-mode')) {
-      toggle.addClass('active');
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        $body.addClass('dark-mode');
+        toggle.addClass('active');
     } else {
-      toggle.removeClass('active');
+        $body.removeClass('dark-mode');
+        toggle.removeClass('active');
     }
 
     toggle.on('click', function (e) {
-      e.preventDefault();
-      $(this).toggleClass('active');
-      $body.toggleClass('dark-mode');
+        e.preventDefault();
+        $(this).toggleClass('active');
+        $body.toggleClass('dark-mode');
+
+        if ($body.hasClass('dark-mode')) {
+            localStorage.setItem('dark-mode', 'enabled');
+        } else {
+            localStorage.removeItem('dark-mode');
+        }
     });
-  }; // Knob @v1.0
+}; // Knob @v1.0
 
 
   NioApp.Knob = function (elm, opt) {
@@ -662,7 +670,7 @@
 
   NioApp.Slider.init = function () {
     NioApp.Slick('.slider-init');
-  }; // Number Spinner 
+  }; // Number Spinner
 
 
   NioApp.NumberSpinner = function (elm, opt) {

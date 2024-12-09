@@ -8,6 +8,7 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\LaporanPembelianController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\LaporanPenjualanController;
+use App\Http\Controllers\DataUserController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -25,8 +26,6 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::get('/supplier/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.edit');
     Route::post('/supplier/update/{id}', [SupplierController::class, 'update'])->name('supplier.update');
     Route::post('/supplier/delete/{id}', [SupplierController::class, 'delete'])->name('supplier.delete');
-
-
 
     Route::get('/barang/index', [BarangController::class, 'index'])->name('barang.show'); // Menampilkan daftar barang
     Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create'); // Form tambah barang
@@ -54,5 +53,6 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::get('/laporan-pembelian', [LaporanPembelianController::class, 'index'])->name('laporan.pembelian');
     Route::get('/laporan-penjualan', [LaporanPenjualanController::class, 'index'])->name('laporan.penjualan');
 
+    Route::resource('datauser', DataUserController::class);
 });
 

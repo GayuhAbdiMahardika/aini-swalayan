@@ -43,15 +43,11 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="analytic-ov">
-                                        <div class="analytic-ov-ck">
-                                            <canvas class="analytics-line-large" id="analyticOvData"></canvas>
-                                        </div>
-                                        <div class="chart-label-group ml-5">
-                                            <div class="chart-label">01 Jan, 2020</div>
-                                            <div class="chart-label d-none d-sm-block">15 Jan, 2020</div>
-                                            <div class="chart-label">30 Jan, 2020</div>
-                                        </div>
+                                    <div class="card-head">
+                                        <h6 class="title">Rounded Chart</h6>
+                                    </div>
+                                    <div class="nk-ck-sm">
+                                        <canvas class="line-chart" id="filledLineChart-PenjualanDashboard"></canvas>
                                     </div>
                                 </div>
                             </div><!-- .card -->
@@ -102,4 +98,129 @@
     </div>
 </div>
 <!-- content @e -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var filledLineChart = {
+            labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+            dataUnit: 'Penjualan',
+            lineTension: .4,
+            datasets: [{
+                label: "Total Penjualan",
+                color: "#9d72ff",
+                background: 'rgba(157, 114, 255, 0.4)',
+                data: [110, 80, 125, 65, 95, 75, 90, 110, 80, 125, 70, 95, 110, 80, 125, 65, 95, 75, 90, 110, 80, 125, 70, 95, 110, 80, 125, 65, 95, 100]
+            }]
+        };
+
+        function lineChart(selector, set_data) {
+            var $selector = selector ? $(selector) : $('.line-chart');
+            $selector.each(function () {
+                var $self = $(this),
+                    _self_id = $self.attr('id'),
+                    _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data;
+
+                var selectCanvas = document.getElementById(_self_id).getContext("2d");
+                var chart_data = [];
+
+                for (var i = 0; i < _get_data.datasets.length; i++) {
+                    chart_data.push({
+                        label: _get_data.datasets[i].label,
+                        tension: _get_data.lineTension,
+                        backgroundColor: _get_data.datasets[i].background,
+                        borderWidth: 2,
+                        borderColor: _get_data.datasets[i].color,
+                        pointBorderColor: _get_data.datasets[i].color,
+                        pointBackgroundColor: '#fff',
+                        pointHoverBackgroundColor: "#fff",
+                        pointHoverBorderColor: _get_data.datasets[i].color,
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 4,
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHitRadius: 4,
+                        data: _get_data.datasets[i].data
+                    });
+                }
+
+                var chart = new Chart(selectCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: _get_data.labels,
+                        datasets: chart_data
+                    },
+                    options: {
+                        legend: {
+                            display: _get_data.legend ? _get_data.legend : false,
+                            rtl: NioApp.State.isRTL,
+                            labels: {
+                                boxWidth: 12,
+                                padding: 20,
+                                fontColor: '#6783b8'
+                            }
+                        },
+                        maintainAspectRatio: false,
+                        tooltips: {
+                            enabled: true,
+                            rtl: NioApp.State.isRTL,
+                            callbacks: {
+                                title: function title(tooltipItem, data) {
+                                    return data['labels'][tooltipItem[0]['index']];
+                                },
+                                label: function label(tooltipItem, data) {
+                                    return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
+                                }
+                            },
+                            backgroundColor: '#eff6ff',
+                            titleFontSize: 13,
+                            titleFontColor: '#6783b8',
+                            titleMarginBottom: 6,
+                            bodyFontColor: '#9eaecf',
+                            bodyFontSize: 12,
+                            bodySpacing: 4,
+                            yPadding: 10,
+                            xPadding: 10,
+                            footerMarginTop: 0,
+                            displayColors: false
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                position: NioApp.State.isRTL ? "right" : "left",
+                                ticks: {
+                                    beginAtZero: false,
+                                    fontSize: 12,
+                                    fontColor: '#9eaecf',
+                                    padding: 10
+                                },
+                                gridLines: {
+                                    color: NioApp.hexRGB("#526484", .2),
+                                    tickMarkLength: 0,
+                                    zeroLineColor: NioApp.hexRGB("#526484", .2)
+                                }
+                            }],
+                            xAxes: [{
+                                display: true,
+                                ticks: {
+                                    fontSize: 12,
+                                    fontColor: '#9eaecf',
+                                    source: 'auto',
+                                    padding: 5,
+                                    reverse: NioApp.State.isRTL
+                                },
+                                gridLines: {
+                                    color: "transparent",
+                                    tickMarkLength: 10,
+                                    zeroLineColor: NioApp.hexRGB("#526484", .2),
+                                    offsetGridLines: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            });
+        }
+
+        lineChart('#filledLineChart-PenjualanDashboard', filledLineChart);
+    });
+</script>
 @endsection

@@ -121,7 +121,7 @@ class PenjualanController extends Controller
         $penjualan->no_faktur = $request->no_faktur;
         $penjualan->tanggal = now();
         $penjualan->total = $total;
-        $penjualan->user_id = Auth::id(); // Add this line to set the user_id
+        $penjualan->user_id = Auth::id();
         $penjualan->save();
 
         foreach ($cart as $item) {
@@ -172,4 +172,6 @@ class PenjualanController extends Controller
 
         return redirect()->route('penjualan.index')->with('success', 'Penjualan deleted successfully.');
     }
+
+    
 }

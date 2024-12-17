@@ -23,8 +23,12 @@
         </script>
     @endif
     <div class="container">
-        <h4 style="text-align: center">Data User</h4>
-        <a href="{{ route('datauser.create') }}" class="btn btn-primary">Tambah User</a>
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h4 class="text-primary">Data User</h4>
+            <div class="ms-auto">
+                <a class="btn btn-success" href="{{ route('datauser.create') }}">Tambah User</a>
+            </div>
+        </div>
         <div class="row" style="margin-top:20px">
             <div class="col-md-12">
                 <table class="datatable-init nk-tb-list nk-tb-ulist table-bordered">

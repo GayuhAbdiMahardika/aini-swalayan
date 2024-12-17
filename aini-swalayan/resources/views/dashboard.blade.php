@@ -43,9 +43,6 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="card-head">
-                                        <h6 class="title">Rounded Chart</h6>
-                                    </div>
                                     <div class="nk-ck-sm">
                                         <canvas class="line-chart" id="filledLineChart-PenjualanDashboard"></canvas>
                                     </div>
@@ -72,7 +69,7 @@
                                         <h6 class="title">Detail Barang Terlaris</h6>
                                         <ul>
                                             @foreach($topSellingItems as $item)
-                                                <li>{{ $item->barang->nama ?? 'Nama Barang Tidak Ditemukan' }}: {{ $item->total }} terjual</li>
+                                                <li>{{ $item->barang->nama_barang ?? 'Nama Barang Tidak Ditemukan' }}: {{ $item->total }} terjual</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -220,7 +217,7 @@
         lineChart('#filledLineChart-PenjualanDashboard', filledLineChart);
 
         var topSellingItems = @json($topSellingItems);
-        var pieLabels = topSellingItems.map(item => item.barang.nama ?? 'Nama Barang Tidak Ditemukan');
+        var pieLabels = topSellingItems.map(item => item.barang.nama_barang ?? 'Nama Barang Tidak Ditemukan');
         var pieData = topSellingItems.map(item => item.total);
 
         var pieChartData = {

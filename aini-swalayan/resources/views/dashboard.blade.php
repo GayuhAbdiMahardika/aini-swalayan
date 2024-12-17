@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="nk-ck-sm">
-                                        <canvas class="pie-chart" id="pieChartData"></canvas>
+                                        <canvas class="pie-chart" id="pieChartData-PenjualanDashboard"></canvas>
                                     </div>
                                 </div>
                             </div><!-- .card -->
@@ -210,6 +210,84 @@
         }
 
         lineChart('#filledLineChart-PenjualanDashboard', filledLineChart);
+
+        var pieChartData = {
+            labels: ["Barang A", "Barang B", "Barang C", "Barang D", "Barang E", "Barang F", "Barang G", "Barang H", "Barang I", "Barang J"],
+            dataUnit: 'Penjualan',
+            datasets: [{
+                borderColor: "#fff",
+                background: ["#9d72ff", "#5ce0aa", "#f4aaa4", "#8feac5", "#ffa9ce", "#f9db7b", "#b8acff", "#9cabff", "#ff9d72", "#72ff9d"],
+                data: [110, 80, 125, 65, 95, 75, 90, 110, 80, 125]
+            }]
+        };
+
+        function pieChart(selector, set_data) {
+            var $selector = selector ? $(selector) : $('.pie-chart');
+            $selector.each(function () {
+                var $self = $(this),
+                    _self_id = $self.attr('id'),
+                    _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data;
+
+                var selectCanvas = document.getElementById(_self_id).getContext("2d");
+                var chart_data = [];
+
+                for (var i = 0; i < _get_data.datasets.length; i++) {
+                    chart_data.push({
+                        backgroundColor: _get_data.datasets[i].background,
+                        borderWidth: 2,
+                        borderColor: _get_data.datasets[i].borderColor,
+                        hoverBorderColor: _get_data.datasets[i].borderColor,
+                        data: _get_data.datasets[i].data
+                    });
+                }
+
+                var chart = new Chart(selectCanvas, {
+                    type: 'pie',
+                    data: {
+                        labels: _get_data.labels,
+                        datasets: chart_data
+                    },
+                    options: {
+                        legend: {
+                            display: _get_data.legend ? _get_data.legend : false,
+                            rtl: NioApp.State.isRTL,
+                            labels: {
+                                boxWidth: 12,
+                                padding: 20,
+                                fontColor: '#6783b8'
+                            }
+                        },
+                        rotation: -.2,
+                        maintainAspectRatio: false,
+                        tooltips: {
+                            enabled: true,
+                            rtl: NioApp.State.isRTL,
+                            callbacks: {
+                                title: function title(tooltipItem, data) {
+                                    return data['labels'][tooltipItem[0]['index']];
+                                },
+                                label: function label(tooltipItem, data) {
+                                    return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
+                                }
+                            },
+                            backgroundColor: '#eff6ff',
+                            titleFontSize: 13,
+                            titleFontColor: '#6783b8',
+                            titleMarginBottom: 6,
+                            bodyFontColor: '#9eaecf',
+                            bodyFontSize: 12,
+                            bodySpacing: 4,
+                            yPadding: 10,
+                            xPadding: 10,
+                            footerMarginTop: 0,
+                            displayColors: false
+                        }
+                    }
+                });
+            });
+        }
+
+        pieChart('#pieChartData-PenjualanDashboard', pieChartData);
     });
 </script>
 @endsection

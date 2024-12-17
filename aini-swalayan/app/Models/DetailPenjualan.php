@@ -27,4 +27,14 @@ class DetailPenjualan extends Model
     {
         return $this->belongsTo(DataBarang::class);
     }
+
+    public static function topSellingItems($limit = 10)
+    {
+        return self::selectRaw('barang_id, SUM(jumlah) as total')
+            ->groupBy('barang_id')
+            ->orderBy('total', 'desc')
+            ->limit($limit)
+            ->with('barang')
+            ->get();
+    }
 }

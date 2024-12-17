@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Penjualan;
 use Carbon\Carbon;
+use App\Models\DetailPenjualan;
 
 class DashboardController extends Controller
 {
@@ -16,6 +17,8 @@ class DashboardController extends Controller
             ->orderBy('date')
             ->get();
 
-        return view('dashboard', compact('salesData'));
+        $topSellingItems = DetailPenjualan::topSellingItems();
+
+        return view('dashboard', compact('salesData', 'topSellingItems'));
     }
 }

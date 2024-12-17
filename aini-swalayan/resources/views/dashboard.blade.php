@@ -68,6 +68,14 @@
                                     <div class="nk-ck-sm">
                                         <canvas class="pie-chart" id="pieChartData-PenjualanDashboard"></canvas>
                                     </div>
+                                    <div class="mt-4">
+                                        <h6 class="title">Detail Barang Terlaris</h6>
+                                        <ul>
+                                            @foreach($topSellingItems as $item)
+                                                <li>{{ $item->barang->nama ?? 'Nama Barang Tidak Ditemukan' }}: {{ $item->total }} terjual</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
                             </div><!-- .card -->
                         </div><!-- .col -->
@@ -211,13 +219,17 @@
 
         lineChart('#filledLineChart-PenjualanDashboard', filledLineChart);
 
+        var topSellingItems = @json($topSellingItems);
+        var pieLabels = topSellingItems.map(item => item.barang.nama ?? 'Nama Barang Tidak Ditemukan');
+        var pieData = topSellingItems.map(item => item.total);
+
         var pieChartData = {
-            labels: ["Barang A", "Barang B", "Barang C", "Barang D", "Barang E", "Barang F", "Barang G", "Barang H", "Barang I", "Barang J"],
+            labels: pieLabels,
             dataUnit: 'Penjualan',
             datasets: [{
                 borderColor: "#fff",
                 background: ["#9d72ff", "#5ce0aa", "#f4aaa4", "#8feac5", "#ffa9ce", "#f9db7b", "#b8acff", "#9cabff", "#ff9d72", "#72ff9d"],
-                data: [110, 80, 125, 65, 95, 75, 90, 110, 80, 125]
+                data: pieData
             }]
         };
 

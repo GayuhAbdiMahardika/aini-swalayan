@@ -65,29 +65,9 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="traffic-channel">
-                                        <div class="traffic-channel-doughnut-ck">
-                                            <canvas class="analytics-doughnut" id="TrafficChannelDoughnutData"></canvas>
-                                        </div>
-                                        <div class="traffic-channel-group g-2">
-                                            <div class="traffic-channel-data">
-                                                <div class="title"><span class="dot dot-lg sq" data-bg="#9cabff"></span><span>Organic Search</span></div>
-                                                <div class="amount">4,305 <small>58.63%</small></div>
-                                            </div>
-                                            <div class="traffic-channel-data">
-                                                <div class="title"><span class="dot dot-lg sq" data-bg="#b8acff"></span><span>Social Media</span></div>
-                                                <div class="amount">859 <small>23.94%</small></div>
-                                            </div>
-                                            <div class="traffic-channel-data">
-                                                <div class="title"><span class="dot dot-lg sq" data-bg="#ffa9ce"></span><span>Referrals</span></div>
-                                                <div class="amount">482 <small>12.94%</small></div>
-                                            </div>
-                                            <div class="traffic-channel-data">
-                                                <div class="title"><span class="dot dot-lg sq" data-bg="#f9db7b"></span><span>Others</span></div>
-                                                <div class="amount">138 <small>4.49%</small></div>
-                                            </div>
-                                        </div><!-- .traffic-channel-group -->
-                                    </div><!-- .traffic-channel -->
+                                    <div class="nk-ck-sm">
+                                        <canvas class="pie-chart" id="pieChartData"></canvas>
+                                    </div>
                                 </div>
                             </div><!-- .card -->
                         </div><!-- .col -->
@@ -100,15 +80,24 @@
 <!-- content @e -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        var salesData = @json($salesData);
+        var labels = Array.from({length: 31}, (_, i) => i + 1);
+        var data = Array(31).fill(0);
+
+        salesData.forEach(sale => {
+            var date = new Date(sale.date);
+            data[date.getDate() - 1] = sale.total;
+        });
+
         var filledLineChart = {
-            labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+            labels: labels,
             dataUnit: 'Penjualan',
             lineTension: .4,
             datasets: [{
                 label: "Total Penjualan",
                 color: "#9d72ff",
                 background: 'rgba(157, 114, 255, 0.4)',
-                data: [110, 80, 125, 65, 95, 75, 90, 110, 80, 125, 70, 95, 110, 80, 125, 65, 95, 75, 90, 110, 80, 125, 70, 95, 110, 80, 125, 65, 95, 100]
+                data: data
             }]
         };
 

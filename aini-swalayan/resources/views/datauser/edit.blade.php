@@ -37,7 +37,11 @@
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
-                <input type="text" class="form-control" id="role" name="role" value="{{ $datauser->role }}" required>
+                <select class="form-control" id="role" name="role" required>
+                    <option value="admin" {{ $datauser->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="kasir" {{ $datauser->role == 'kasir' ? 'selected' : '' }}>Kasir</option>
+                    <option value="manager" {{ $datauser->role == 'manager' ? 'selected' : '' }}>Manager</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

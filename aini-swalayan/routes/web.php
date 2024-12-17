@@ -9,6 +9,7 @@ use App\Http\Controllers\LaporanPembelianController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\LaporanPenjualanController;
 use App\Http\Controllers\DataUserController;
+use App\Http\Controllers\DashboardController; // Add this line
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -16,9 +17,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => ['auth:data_user']], function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard'); // Update this line
 
     Route::get('/supplier', [SupplierController::class, 'tampil'])->name('supplier.tampil');
     Route::get('/supplier/tambah', [SupplierController::class, 'tambah'])->name('supplier.tambah');

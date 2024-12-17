@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             DataUserSeeder::class,
             DataBarangSeeder::class,
             DataSupplierSeeder::class,
+            DataPembelianSeeder::class,
+            DataPenjualanSeeder::class,
         ]);
     }
 }

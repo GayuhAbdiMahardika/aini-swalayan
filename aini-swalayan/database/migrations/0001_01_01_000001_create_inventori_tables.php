@@ -50,9 +50,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('detail_pembelian');
+        Schema::dropIfExists('pembelian');
         Schema::dropIfExists('data_barang');
         Schema::dropIfExists('data_supplier');
-        Schema::dropIfExists('pembelian');
-        Schema::dropIfExists('detail_pembelian');
     }
 };

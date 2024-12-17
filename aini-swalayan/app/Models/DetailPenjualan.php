@@ -25,7 +25,7 @@ class DetailPenjualan extends Model
 
     public function barang()
     {
-        return $this->belongsTo(DataBarang::class);
+        return $this->belongsTo(DataBarang::class, 'barang_id');
     }
 
     public static function topSellingItems($limit = 10)

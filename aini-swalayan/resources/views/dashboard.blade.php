@@ -68,8 +68,12 @@
                                     <div class="mt-4">
                                         <h6 class="title">Detail Barang Terlaris</h6>
                                         <ul>
-                                            @foreach($topSellingItems as $item)
-                                                <li>{{ $item->barang->nama_barang ?? 'Nama Barang Tidak Ditemukan' }}: {{ $item->total }} terjual</li>
+                                            @foreach($topSellingItems as $index => $item)
+                                                <li style="font-size: 16px; margin-bottom: 8px; display: flex; align-items: center;">
+                                                    <span style="display: inline-block; width: 16px; height: 16px; background-color: {{ ["#9d72ff", "#5ce0aa", "#f4aaa4", "#8feac5", "#ffa9ce", "#f9db7b", "#b8acff", "#9cabff", "#ff9d72", "#72ff9d"][$index % 10] }}; margin-right: 12px;"></span>
+                                                    <span style="flex-grow: 1;">{{ $item->barang->nama_barang ?? 'Nama Barang Tidak Ditemukan' }}</span>
+                                                    <span>{{ $item->total }} terjual</span>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </div>

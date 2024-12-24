@@ -9,7 +9,7 @@ use App\Http\Controllers\LaporanPembelianController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\LaporanPenjualanController;
 use App\Http\Controllers\DataUserController;
-use App\Http\Controllers\DashboardController; // Add this line
+use App\Http\Controllers\DashboardController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -17,7 +17,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => ['auth:data_user']], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard'); // Update this line
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/supplier', [SupplierController::class, 'tampil'])->name('supplier.tampil');
     Route::get('/supplier/tambah', [SupplierController::class, 'tambah'])->name('supplier.tambah');
@@ -26,12 +26,12 @@ Route::group(['middleware' => ['auth:data_user']], function () {
     Route::post('/supplier/update/{id}', [SupplierController::class, 'update'])->name('supplier.update');
     Route::post('/supplier/delete/{id}', [SupplierController::class, 'delete'])->name('supplier.delete');
 
-    Route::get('/barang/index', [BarangController::class, 'index'])->name('barang.show'); // Menampilkan daftar barang
-    Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create'); // Form tambah barang
-    Route::post('/barang', [BarangController::class, 'store'])->name('barang.store'); // Menyimpan barang baru
-    Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit'); // Form edit barang
-    Route::put('/barang/{id}', [BarangController::class, 'update'])->name('barang.update'); // Memperbarui barang
-    Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy'); // Menghapus barang
+    Route::get('/barang/index', [BarangController::class, 'index'])->name('barang.show');
+    Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
+    Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
+    Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+    Route::put('/barang/{id}', [BarangController::class, 'update'])->name('barang.update');
+    Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy'); 
 
     Route::get('/pembelian', [PembelianController::class, 'create'])->name('beli');
     Route::post('/add-to-session', [PembelianController::class, 'addToSession'])->name('add.to.session');

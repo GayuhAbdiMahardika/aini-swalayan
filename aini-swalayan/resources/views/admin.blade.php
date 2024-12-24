@@ -400,6 +400,7 @@
                                                     <div class="user-info">
                                                         <span class="lead-text">{{ Auth::user()->name }}</span>
                                                         <span class="sub-text">{{ Auth::user()->email }}</span>
+                                                        <span class="sub-text">{{ Auth::user()->role }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -427,6 +428,7 @@
                 <div class="nk-sidebar" data-content="sidebarMenu">
                     <div class="nk-sidebar-inner" data-simplebar>
                         <ul class="nk-menu nk-menu-md">
+                            @can('isAdmin')
                             <li class="nk-menu-heading">
                                 <h6 class="overline-title text-primary-alt">Dashboards</h6>
                             </li><!-- .nk-menu-heading -->
@@ -463,6 +465,54 @@
                                     <span class="nk-menu-text">Laporan Pembelian</span>
                                 </a>
                             </li><!-- .nk-menu-item -->
+                            @endcan
+                            @can('isGudang')
+                            <li class="nk-menu-heading">
+                                <h6 class="overline-title text-primary-alt">Inventory</h6>
+                            </li><!-- .nk-menu-heading -->
+                            <li class="nk-menu-item">
+                                <a href="{{ route('barang.show') }}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-property-blank"></em></span>
+                                    <span class="nk-menu-text">Data Barang</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="{{ route('supplier.tampil') }}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-truck"></em></span>
+                                    <span class="nk-menu-text">Data Supplier</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="{{ route('beli') }}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-bag"></em></span>
+                                    <span class="nk-menu-text">Pembelian</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="{{ route('laporan.pembelian') }}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
+                                    <span class="nk-menu-text">Laporan Pembelian</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            @endcan
+                            @can('isKasir')
+                            <li class="nk-menu-heading">
+                                <h6 class="overline-title text-primary-alt">Penjualan</h6>
+                            </li><!-- .nk-menu-heading -->
+                            <li class="nk-menu-item">
+                                <a href="{{ route('jual') }}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
+                                    <span class="nk-menu-text">Penjualan</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="{{ route('laporan.penjualan') }}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
+                                    <span class="nk-menu-text">Laporan Penjualan</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            @endcan
+                            @can('isAdmin')
                             <li class="nk-menu-heading">
                                 <h6 class="overline-title text-primary-alt">Penjualan</h6>
                             </li><!-- .nk-menu-heading -->
@@ -487,6 +537,7 @@
                                     <span class="nk-menu-text">Data User</span>
                                 </a>
                             </li><!-- .nk-menu-item -->
+                            @endcan
                         </ul><!-- .nk-menu -->
                     </div>
                 </div>

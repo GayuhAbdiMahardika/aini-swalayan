@@ -23,7 +23,23 @@ class DataUserSeeder extends Seeder
                 'role' => 'admin',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]
+            ],
+            [
+                'name' => 'Fitranda',
+                'email' => 'fitranda@gmail.com',
+                'password' => Hash::make('123'),
+                'role' => 'kasir',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Gayuh',
+                'email' => 'gayuh@gmail.com',
+                'password' => Hash::make('123'),
+                'role' => 'gudang',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

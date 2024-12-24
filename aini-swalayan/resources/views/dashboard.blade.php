@@ -1,6 +1,7 @@
 @extends('admin')
 
 @section('content')
+@can('isAdmin')
 <!-- content @s -->
 <div class="nk-content ">
     <div class="container-fluid">
@@ -19,8 +20,12 @@
                                 <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                 <div class="toggle-expand-content" data-content="pageMenu">
                                     <ul class="nk-block-tools g-3">
+                                        @can('isGudang')
                                         <li class="nk-block-tools-opt"><a href="{{ route('laporan.pembelian') }}" class="btn btn-secondary"><em class="icon ni ni-reports"></em><span>Laporan Pembelian</span></a></li>
+                                        @endcan
+                                        @can('isKasir')
                                         <li class="nk-block-tools-opt"><a href="{{ route('laporan.penjualan') }}" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Laporan Penjualan</span></a></li>
+                                        @endcan
                                     </ul>
                                 </div>
                             </div>
@@ -303,4 +308,7 @@
         pieChart('#pieChartData-PenjualanDashboard', pieChartData);
     });
 </script>
+@else
+<p>Anda tidak memiliki akses untuk melihat halaman ini.</p>
+@endcan
 @endsection
